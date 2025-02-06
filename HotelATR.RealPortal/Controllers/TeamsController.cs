@@ -33,7 +33,7 @@ namespace HotelATR.RealPortal.Controllers
                     }
                 }); 
 
-            return View();
+            return View(teams);
         }
     }
 }
