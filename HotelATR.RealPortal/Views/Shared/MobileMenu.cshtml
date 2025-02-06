@@ -6,7 +6,7 @@
                 <div class="mobile-menu">
                     <nav id="dropdown">
                         <ul>
-                            <li><a href="/home/index">HOME</a></li>
+                            <li>@Html.ActionLink("HOME", "index", "home")</li>
                             <li>
                                 <a href="room-grid.html">ROOMS</a>
                                 <ul class="submenu">
@@ -15,9 +15,9 @@
                                 </ul>
                             </li>
                             <li><a href="location.html">LOCATION</a></li>
-                            <li><a href="/event/index">EVENT</a></li>
-                            <li><a href="/teams/index">TEAM</a></li>
-                            <li><a href="/home/contact">CONTACT</a></li>
+                            <li>@Html.ActionLink("EVENT", "event", "index")">EVENT</li>
+                            <li>@Html.ActionLink("TEAM", "index", "teams")</a></li>
+                            <li>@Html.ActionLink("CONTACT", "contact", "home")</li>
                         </ul>
                     </nav>
                 </div>
