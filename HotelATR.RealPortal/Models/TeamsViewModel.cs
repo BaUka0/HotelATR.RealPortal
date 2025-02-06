@@ -14,3 +14,4 @@
         public string URL { get; set; }
         public string LinkType { get; set; }
     }
+}
