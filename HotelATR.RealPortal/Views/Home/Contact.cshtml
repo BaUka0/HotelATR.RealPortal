@@ -1,4 +1,4 @@
-﻿
+﻿@model Message
 @section Styles
 {
 
@@ -45,20 +45,24 @@
             </div>
             <div class="col-md-8">
                 <h4 class="contact-title">send your massage</h4>
-                <form id="contact-form" asp-controller="home" asp-action="addmessage" method="post">
+                <form id="contact-form" asp-controller="home" asp-action="contact" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <input type="text" name="name" placeholder="Enter Name">
+                            <span asp-validation-for="name" class="text-danger"></span>
                         </div>
                         <div class="col-md-6">
                             <input type="email" name="email" placeholder="Enter Email">
+                            <span asp-validation-for="email" class="text-danger"></span>
                         </div>
                         <div class="col-md-12">
                             <textarea name="message" cols="30" rows="10" placeholder="Message here"></textarea>
+                            <span asp-validation-for="message" class="text-danger"></span>
                             <button type="submit" class="default-btn">SUBMIT</button>
                         </div>
                     </div>
                 </form>
+                <div asp-validation-summary="All" class="form-message"></div>
                 <p class="form-messege"></p>
             </div>
         </div>

@@ -6,8 +6,9 @@
                 <div class="newsletter-container">
                     <h3>NewsLetter Sign-Up</h3>
                     <div class="newsletter-form">
-                        <form  asp-controller="home" asp-action="NewsLetter" id="mc-form" class="mc-form fix" method="post">
+                        <form  asp-controller="home" asp-action="NewsLetterSignUp" id="mc-form" class="mc-form fix" method="post">
                             <input id="mc-email" type="email" name="email" placeholder="Enter your E-mail">
+                            <input id="mc-email" type="text" name="phone" placeholder="Enter your phone number">
                             <button id="mc-submit" type="submit" class="default-btn">subcribes</button>
                         </form>
                         <!-- mailchimp-alerts Start -->
@@ -17,6 +18,7 @@
                             <div class="mailchimp-error"></div><!-- mailchimp-error end -->
                         </div>
                         <!-- mailchimp-alerts end -->
+                        <div asp-validation-summary="All", class="form-message"></div>
                     </div>
                 </div>
             </div>

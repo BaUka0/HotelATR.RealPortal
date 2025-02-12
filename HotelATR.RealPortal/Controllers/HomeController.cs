@@ -1,6 +1,7 @@
 using HotelATR.RealPortal.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace HotelATR.RealPortal.Controllers
 {
@@ -35,16 +36,41 @@ namespace HotelATR.RealPortal.Controllers
         }
         [HttpPost]
         //public IActionResult AddMessage(string name, string email, string message)
-        public IActionResult AddMessage(Message UserMessage)
+        public IActionResult contact(Message UserMessage)
         {
-            var data = Request.Form;
-            return RedirectToAction("Contact", "home");
-            //return View();
+            //if (string.IsNullOrWhiteSpace(UserMessage.name))
+            //{
+            //    ModelState.AddModelError("name", "ѕоле об€зательно должно быть заполнено");
+
+            //}
+            //if (ModelState.IsValid)
+            //{
+            //    return View();
+            //}
+            //else
+            //{
+            //    return View(UserMessage);
+            //}
+            //var data = Request.Form;
+            //return RedirectToAction("Contact", "home");
+            return View();
         }
         [HttpPost]
-        public IActionResult NewsLetter(string email)
+        public IActionResult NewsLetterSignUp(string email, string phone)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                ModelState.AddModelError("email", "ѕолу об€зательно должно быть заполнено");
+            }
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Contact");
+            }
+
         }
     }
 }
