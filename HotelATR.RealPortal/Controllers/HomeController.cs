@@ -1,9 +1,9 @@
+using System.Diagnostics;
+using FluentValidation;
 using HotelATR.RealPortal.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
 
-namespace HotelATR.RealPortal.Controllers
+namespace HotelATR.RealPortal0.Controllers
 {
     public class HomeController : Controller
     {
@@ -34,50 +34,85 @@ namespace HotelATR.RealPortal.Controllers
         {
             return View();
         }
+
+
         [HttpPost]
         //public IActionResult AddMessage(string name, string email, string message)
-        public IActionResult contact(Message UserMessage)
+        public IActionResult contact(Message userMessage)
         {
 
-            MessageValidator rules = new MessageValidator();
-            var result = rules.Validate(UserMessage);
 
-            var errors = result.Errors;
-
-            //if (string.IsNullOrWhiteSpace(UserMessage.name))
+            //if(string.IsNullOrWhiteSpace(UserMessage.name))
             //{
             //    ModelState.AddModelError("name", "ѕоле об€зательно должно быть заполнено");
 
             //}
-            if (result.IsValid)
             //if (ModelState.IsValid)
+            //{
+            //    return View();
+            //}
+            //else
+            //{
+            //    return View(UserMessage);
+            //}
+            //var data = Request.Form;
+            //return RedirectToAction("Contact", "home");
+
+
+            MessageValidator rules = new MessageValidator();
+            var result = rules.Validate(userMessage);
+
+            //list vount of errors
+            var errors = result.Errors;
+
+            rules.ValidateAndThrow(userMessage);
+
+            if (result.IsValid)
             {
                 return View();
             }
             else
             {
-                return View(UserMessage);
+                return View(userMessage);
             }
-            //var data = Request.Form;
-            //return RedirectToAction("Contact", "home");
-            //return View();
+
         }
+
         [HttpPost]
+        public IActionResult SendEmail(string email)
+        {
+            //return RedirectToAction("Contact", "home");
+            return View();
+        }
+
+
+        //NewsLetter
         public IActionResult NewsLetterSignUp(string email, string phone)
         {
             if (string.IsNullOrWhiteSpace(email))
             {
-                ModelState.AddModelError("email", "ѕолу об€зательно должно быть заполнено");
+                ModelState.AddModelError("error", "NANANA");
             }
+
             if (ModelState.IsValid)
             {
                 return RedirectToAction("Index");
             }
             else
             {
-                return View("Contact");
+                return View();
             }
 
+
         }
+        public IActionResult Rooms()
+        {
+            return View();
+        }
+        public IActionResult Locations()
+        {
+            return View();
+        }
+
     }
 }
