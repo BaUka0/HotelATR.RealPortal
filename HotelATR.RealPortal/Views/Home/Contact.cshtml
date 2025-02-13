@@ -55,9 +55,16 @@
                             <input type="email" name="email" placeholder="Enter Email">
                             <span asp-validation-for="email" class="text-danger"></span>
                         </div>
+                        <div class="col-md-6">
+                            <input type="text" name="createDate" placeholder="Enter createDate">
+                            <span asp-validation-for="createDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="city" placeholder="Enter City">
+                            <span asp-validation-for="city" class="text-danger"></span>
+                        </div>
                         <div class="col-md-12">
                             <textarea name="message" cols="30" rows="10" placeholder="Message here"></textarea>
-                            <span asp-validation-for="message" class="text-danger"></span>
                             <button type="submit" class="default-btn">SUBMIT</button>
                         </div>
                     </div>

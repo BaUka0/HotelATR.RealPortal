@@ -38,22 +38,29 @@ namespace HotelATR.RealPortal.Controllers
         //public IActionResult AddMessage(string name, string email, string message)
         public IActionResult contact(Message UserMessage)
         {
+
+            MessageValidator rules = new MessageValidator();
+            var result = rules.Validate(UserMessage);
+
+            var errors = result.Errors;
+
             //if (string.IsNullOrWhiteSpace(UserMessage.name))
             //{
             //    ModelState.AddModelError("name", "ѕоле об€зательно должно быть заполнено");
 
             //}
+            if (result.IsValid)
             //if (ModelState.IsValid)
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-            //    return View(UserMessage);
-            //}
+            {
+                return View();
+            }
+            else
+            {
+                return View(UserMessage);
+            }
             //var data = Request.Form;
             //return RedirectToAction("Contact", "home");
-            return View();
+            //return View();
         }
         [HttpPost]
         public IActionResult NewsLetterSignUp(string email, string phone)
