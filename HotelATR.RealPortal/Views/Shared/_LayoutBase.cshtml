@@ -38,6 +38,10 @@
                         <div class="header-contact">
                             <span class="text-theme">Contact:</span>
                             <span>0088-234-675-827</span>
+
+                            <span>|</span>
+                            <span class="text-theme">City:</span>
+                            <span id="spanCity" style="cursor:pointer">- none -</span>
                         </div>
                         <div class="header-links">
                             <a href="https://www.facebook.com/"><i class="zmdi zmdi-facebook"></i></a>
@@ -177,7 +181,33 @@
         <!-- Footer Bottom Area End -->
     </footer>
     <!-- Footer Area End -->
-  
+    <!-- Модальное окно -->
+    <div class="modal fade contact-form" id="cityModal" tabindex="-1" role="dialog" aria-labelledby="cityModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="cityModalLabel">Select a city</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="citySelect" class="form-control">
+                        <option value="Almaty">Almaty</option>
+                        <option value="Astana">Astana</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary"
+                            onclick="SaveSelectCity()">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- All js here -->
     <script src="/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -193,6 +223,44 @@
     <script src="/js/plugins.js"></script>
 
     @RenderSection("Scripts", false)
+    <script>
+        $(document).ready(function () 
+        {
+            var city = '@Context.Request.Cookies["city"]'
+
+            if(city !== ""){
+                $('#spanCity').html(city);
+            }
+            else
+            {
+                $('#cityModal').modal('show');
+            }
+
+            $('#spanCity').on('click', function () 
+            {
+                $('#cityModal').modal('show');
+
+            });
+        });
+        function SaveSelectCity(){
+            var citySelect = $('#citySelect').val();
+
+            $.ajax({
+                url: '/home/SetCity',
+                data: {city: citySelect},
+                dataType: 'json',
+                method: 'GET',
+                success: function(data){
+                    $('#spanCity').html(data);
+                    $('#cityModal').modal('hide');
+                },
+                error: function(){
+                    $('#cityModal').modal('hide');
+                }
+            });
+
+        }
+    </script>
 
     <script src="/js/main.js"></script>
 </body>

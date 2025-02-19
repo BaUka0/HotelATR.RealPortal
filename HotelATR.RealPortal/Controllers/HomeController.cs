@@ -114,5 +114,20 @@ namespace HotelATR.RealPortal0.Controllers
             return View();
         }
 
+        public JsonResult SetCity(string city)
+        {
+            try
+            {
+                CookieOptions option = new CookieOptions();
+                option.Expires = DateTime.Now.AddMinutes(1);
+
+                Response.Cookies.Append("city", city);
+                return Json(city);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
     }
 }
